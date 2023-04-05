@@ -128,6 +128,37 @@ RSpec.describe MessagesController, type: :controller do
         expect(record.score).to eq(0)
       end
     end
+    
+    describe "wordle losing" do
+      let(:message_body) {"
+        Wordle 655 X/6
+
+        ⬜⬜⬜⬜⬜
+        ⬜⬜🟩⬜⬜
+        ⬜⬜⬜🟨⬜
+        ⬜⬜⬜⬜⬜
+        🟩⬜🟩⬜⬜
+        ⬜⬜⬜🟩⬜
+      "}
+
+      before do
+        allow(controller).to receive(:params).and_return(params)
+        allow(User).to receive(:find_by_phone_number).with(params["From"]).and_return(user)
+        allow(controller).to receive(:boot_twilio)
+      end
+
+      it "creates a new smsgamescore in the database" do
+        expect {
+          controller.reply
+        }.to change(SmsGameScore, :count).by(1)
+      end
+
+      it "creates a new game score with correct score in the database" do
+        controller.reply
+        record = SmsGameScore.last
+        expect(record.score).to eq(0)
+      end
+    end
 
 
   end
