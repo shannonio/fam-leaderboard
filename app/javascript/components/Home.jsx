@@ -12,7 +12,9 @@ const Home = () => {
           }
           throw new Error("Network response was not ok.");
         })
-        .then((res) => setScores(res))
+        .then((res) => {
+          setScores(res)
+        })
         .catch(() => navigate("/"));
     }, []);
 
