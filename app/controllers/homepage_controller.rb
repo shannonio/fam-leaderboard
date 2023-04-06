@@ -7,6 +7,8 @@ class HomepageController < ApplicationController
         }}
 
         @display_scores = scores.map { |score| "| #{score[:userName]} #{score[:totalScore]} |" }.join("")
-        @display_rank = "🥇 #{scores[0][:userName]} | 🥈 #{scores[1][:userName]} | 🥉 #{scores[2]&[:userName]}"
+        @display_rank = "🥇 #{scores[0][:userName]}" if scores[0]
+        @display_rank = @display_rank + "| 🥈 #{scores[1][:userName]}" if scores[1]
+        @display_rank = @display_rank + "| 🥉 #{scores[2][:userName]}" if scores[2]
     end
 end
