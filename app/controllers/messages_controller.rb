@@ -4,12 +4,6 @@ class MessagesController < ApplicationController
   skip_before_action :verify_authenticity_token
  #skip_before_action :authenticate_user!, :only => "reply"
 
-     # sms = @client.messages.create(
-    #   from: "+18444860817",
-    #   to: from_number,
-    #   body: "Hello There! I've added your score to the leaderboard!"
-    # )
-
   def reply
     @message_body = params["Body"]
     @user = User.find_by_phone_number(params["From"])

@@ -16,5 +16,6 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "sass": "^1.60.0"
-  }
+  },
+  "packageManager": "yarn@1.22.19"
 }
