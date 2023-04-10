@@ -79,4 +79,7 @@ class MessagesController < ApplicationController
       score_it(0)
     end
   end
+
+  def did_win_nyt_crosswords(body)
+  end
 end
